@@ -1,4 +1,4 @@
-# 重构前：
+# 重构前 _BookViewModel：
 class _BookViewModel:
     # 面向对象中类要描述特征（类变量、实例变量）以及其行为（方法）
     @classmethod
@@ -58,9 +58,13 @@ class _BookViewModel:
         return book
 
 
+# 重构后
+
+
 class BookViewModel:
     def __init__(self, book):
         """
+        单本书籍的操作
         原始数据存在于yushu_book中
         :param yushu_book:
         """
@@ -88,6 +92,9 @@ class BookViewModel:
 
 
 class BookCollection:
+    """
+    多本书籍的集合处理
+    """
     def __init__(self):
         self.total = 0
         self.books = []

@@ -28,6 +28,11 @@ class RegisterForm(Form):
             raise ValidationError("电子邮件已被注册")
 
     def validate_nickname(self, field):
+        """
+        自定义验证器 验证昵称是否存在
+        :param field:
+        :return:
+        """
         if User.query.filter_by(nickname=field.data).first():
             raise ValidationError("昵称已存在")
 
@@ -43,13 +48,16 @@ class LoginForm(Form):
 
 
 class EmailForm(Form):
+    """
+    电子邮箱校验
+    """
     email = StringField(validators=[DataRequired(), Length(8, 64),
                                     Email(message="电子邮箱不符合规范")])
 
 
 class ResetPasswordForm(Form):
     """
-    新密码与确认密码验证
+    更改密码或重置密码时：新密码与确认密码验证
     """
     password1 = PasswordField(validators=[
         DataRequired(),

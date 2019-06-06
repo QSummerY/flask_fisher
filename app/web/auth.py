@@ -13,6 +13,7 @@ from app.libs.email import send_mail
 @web.route('/register', methods=['GET', 'POST'])
 def register():
     """
+    用户注册
     注册视图函数，使用form验证层
     注册成功后跳转到登录页面，使用redirect重定向
     :return:
@@ -31,6 +32,7 @@ def register():
 @web.route('/login', methods=['GET', 'POST'])
 def login():
     """
+    用户登录
     remember=True 加上这句话代表是一个持续的cookie
     :return:
     """
@@ -51,6 +53,7 @@ def login():
 @web.route('/reset/password', methods=['GET', 'POST'])
 def forget_password_request():
     """
+    忘记密码的请求
     忘记密码，使用邮箱重置密码  验证邮箱  验证邮箱的用户是否存在
     first_or_404():一旦查询没有找到任何结果，后续代码不会被执行，其内部抛出异常，呈现404页面
     first_or_404内部 可调用对象 _aborter 对象 当做 函数来调用，那么对象的类中必须有 __call__ 方法
@@ -75,6 +78,11 @@ def forget_password_request():
 
 @web.route('/reset/password/<token>', methods=['GET', 'POST'])
 def forget_password(token):
+    """
+    忘记密码的重置
+    :param token:
+    :return:
+    """
     form = ResetPasswordForm(request.form)
     if request.method == 'POST' and form.validate():
         success = User.reset_password(token, form.password1.data)
@@ -88,10 +96,18 @@ def forget_password(token):
 
 @web.route('/change/password', methods=['GET', 'POST'])
 def change_password():
+    """
+    修改密码
+    :return:
+    """
     pass
 
 
 @web.route('/logout')
 def logout():
+    """
+    用户退出登录
+    :return:
+    """
     logout_user()
     return redirect(url_for('web.index'))

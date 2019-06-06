@@ -16,7 +16,6 @@ Email 配置
 MAIL_SERVER:电子邮件服务器地址，使用qq的公开电子邮件服务器
 MAIL_PORT：电子邮件服务器地址
 MAIL_USE_SSL：qq使用的是ssl协议
-
 """
 MAIL_SERVER = 'smtp.qq.com'
 MAIL_PORT = 465

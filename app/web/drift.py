@@ -1,3 +1,4 @@
+# 鱼漂：发送鱼漂、鱼漂记录页、拒绝赠书、同意赠书并已邮寄、撤销请求
 from flask import flash, redirect, url_for, render_template, request, current_app
 from sqlalchemy import desc, or_
 from app.forms.book import DriftForm
@@ -19,6 +20,11 @@ __author__ = '七月'
 @web.route('/drift/<int:gid>', methods=['GET', 'POST'])
 @login_required
 def send_drift(gid):
+    """
+    发送鱼漂，请求书籍
+    :param gid:
+    :return:
+    """
     current_gift = Gift.query.get_or_404(gid)
     # 自己不能向自己请求书籍
     if current_gift.is_yourself_gift(current_user.id):

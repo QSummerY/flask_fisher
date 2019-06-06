@@ -2,6 +2,9 @@ from app.view_models.book import BookViewModel
 
 
 class TradeInfo:
+    """
+    交易信息
+    """
     def __init__(self, goods):
         self.total = 0
         self.trades = []
@@ -38,6 +41,9 @@ class TradeInfo:
 
 
 class MyTrades:
+    """
+    交易集合的处理
+    """
     def __init__(self, trades_of_mine, trade_count_list):
         self.trades = []
 
@@ -47,6 +53,10 @@ class MyTrades:
         self.trades = self.__parse()
 
     def __parse(self):
+        """
+        所需要数据的获取
+        :return:
+        """
         temp_trades = []
         for trade in self.__trades_of_mine:
             my_trade = self.__matching(trade)
@@ -54,6 +64,11 @@ class MyTrades:
         return temp_trades
 
     def __matching(self, trade):
+        """
+        相应交易数据的匹配
+        :param trade:
+        :return:
+        """
         count = 0
         for trade_count in self.__trade_count_list:
             if trade.isbn == trade_count['isbn']:

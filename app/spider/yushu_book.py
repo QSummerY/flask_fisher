@@ -15,11 +15,21 @@ class YuShuBook:
         self.books = []
 
     def __fill_single(self, data):
+        """
+        单本书籍
+        :param data:
+        :return:
+        """
         if data:
             self.total = 1
             self.books.append(data)
 
     def __fill_collection(self, data):
+        """
+        多本书籍
+        :param data:
+        :return:
+        """
         self.books = data['books']
         self.total = data['total']
 
@@ -46,6 +56,11 @@ class YuShuBook:
         self.__fill_collection(result)
 
     def calculate_start(self, page):
+        """
+        计算开始
+        :param page:
+        :return:
+        """
         return (page-1) * current_app.config['PER_PAGE']
 
     @property

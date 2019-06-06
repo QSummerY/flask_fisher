@@ -19,11 +19,13 @@ class Query(BaseQuery):
 
 
 class SQLAlchemy(_SQLAlchemy):
+    """
+    将数据自动提交给数据库
+    """
     @contextmanager
     def auto_commit(self):
         try:
-            yield
-            self.session.commit()
+            yield self.session.commit()
         except Exception as e:
             self.session.rollback()
             raise e
@@ -35,7 +37,7 @@ db = SQLAlchemy(query_class=Query)
 
 class Base(db.Model):
     """
-    设置__abstract__使其不去创建Base表，让它作为基类
+    设置__abstract__使其不去创建Base表，让Base作为基类
     create_time 记录当前模型生成和保存的时间
     软删除，使用状态标记位来代表其已经被删除  status  若查询条件不包括status=1，则会将删除的数据也显示出来
     """

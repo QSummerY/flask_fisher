@@ -5,8 +5,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey, SmallInteger
 
 class Drift(Base):
     """
-    Drift的实质是记录
-    鱼漂信息：一次具体的交易信息
+    Drift的实质是记录 鱼漂信息：一次具体的交易信息
     没有使用模型关联：在user模型中已经存在,使用信息冗余
     模型中有关联：每次查询时，关联模型的信息都是最新的
         缺：没事忠实记录交易时的状态、关联查询需要查询多张表，查询速度慢

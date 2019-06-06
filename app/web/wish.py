@@ -1,5 +1,5 @@
+# 心愿：心愿列表页、添加心愿、赠送书籍、撤销心愿
 from flask import flash, redirect, url_for, render_template
-
 from app.libs.email import send_mail
 from app.models.base import db
 from app.models.gift import Gift
@@ -15,6 +15,10 @@ __author__ = '七月'
 @web.route('/my/wish')
 @login_required
 def my_wish():
+    """
+    我的心愿页，显示我的所有心愿列表
+    :return:
+    """
     uid = current_user.id
     wishes_of_mine = Wish.get_user_wishes(uid)
     isbn_list = [wish.isbn for wish in wishes_of_mine]
@@ -28,6 +32,11 @@ def my_wish():
 @web.route('/wish/book/<isbn>')
 @login_required
 def save_to_wish(isbn):
+    """
+    添加心愿清单
+    :param isbn:
+    :return:
+    """
     if current_user.can_save_to_list(isbn):
         with db.auto_commit():
             wish = Wish()
@@ -58,7 +67,6 @@ def satisfy_wish(wid):
                   wish=wish, gift=gift)
         flash('已向他/她发送了一封邮件，如果他/她愿意接受你的赠送，你将收到一个鱼漂')
     return redirect(url_for('web.book_detail', isbn=wish.isbn))
-
 
 
 @web.route('/wish/book/<isbn>/redraw')

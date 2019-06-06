@@ -12,6 +12,12 @@ class PendingStatus(Enum):
 
     @classmethod
     def pending_str(cls, status, key):
+        """
+        确定交易状态的用户是索要者还是赠送者
+        :param status:
+        :param key:
+        :return:
+        """
         key_map = {
             cls.Waiting: {
                 'requester': '等待对方邮寄',

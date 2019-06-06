@@ -23,4 +23,8 @@ class Book(db.Model):
     image = Column(String(50))
 
     def sample(self):
+        """
+        样本
+        :return:
+        """
         pass

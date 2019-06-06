@@ -28,6 +28,12 @@ class DriftViewModel:
 
     @staticmethod
     def requester_or_gifter(drift, current_user_id):
+        """
+        判断控制状态变量是 requester 还是 gifter
+        :param drift:
+        :param current_user_id:
+        :return:
+        """
         if drift.requester_id == current_user_id:
             you_are = 'requester'
         else:

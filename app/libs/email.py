@@ -15,7 +15,7 @@ template 指定的模板名称
 
 def send_async_mail(app, msg):
     """
-    异步函数
+    异步函数，异步进行邮件的发送
     代理对象受到线程的影响，直接使用flask对象进行操作
     :param msg:
     :return:
@@ -29,9 +29,9 @@ def send_async_mail(app, msg):
 
 def send_mail(to, subject, template, **kwargs):
     """
-    异步发送电子邮件
-    # msg = Message('测试邮件', sender='1272750872@qq.com', body='Test',
-    #               recipients=['1272750872@qq.com'])
+    异步发送电子邮件 aaa@qq.com 为自己邮箱测试 自己给自己发送邮件
+    # msg = Message('测试邮件', sender='aaa@qq.com', body='Test',
+    #               recipients=['aaa@qq.com'])
     :param to:
     :param subject:
     :param template:
@@ -44,5 +44,6 @@ def send_mail(to, subject, template, **kwargs):
     msg.html = render_template(template, **kwargs)
     # 拿到真实的flask核心对象app
     app = current_app._get_current_object()
+    # 线程
     thr = Thread(target=send_async_mail, args=[app, msg])
     thr.start()

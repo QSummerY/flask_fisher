@@ -1,6 +1,6 @@
+# 书籍搜索、书籍详情页
 from flask import jsonify, request, render_template, flash
 from flask_login import current_user
-
 from app.forms.book import SearchForm
 from app.libs.helper import is_isbn_or_key
 from app.models.gift import Gift
