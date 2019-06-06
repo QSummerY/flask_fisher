@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='test.css') }}">
+</head>
+<body>
+{# 涉及url生成的都建议使用url_for() js、图片、视图函数页面重定向#}
+{# 基础模板 #}
+{# 利用block定义区域 #}
+    {% block head %}
+        <div>This is head</div>
+    {% endblock %}
+
+    {# 用于其他页面的填充 #}
+    {% block content %}
+        <div>This is content</div>
+    {% endblock %}
+
+    {% block foot %}
+        <div>This is foot</div>
+    {% endblock %}
+</body>
+</html>

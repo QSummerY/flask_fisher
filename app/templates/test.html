@@ -1,0 +1,31 @@
+{# Jinja2 模板引擎(语言) #}
+{# 对象object的访问类似字典的访问方式 #}
+{# 流程控制语句 if / for in {% if %} #}
+{# 继承基础模板 需加上super() #}
+{# default过滤器是判断data.name属性是否存在   | 相当于管道命令 传值方式 #}
+{% extends 'layout.html' %}
+{% block content %}
+    {{ super() }}
+{#    {{data.age}}#}
+{#    {{ data['age'] }}#}
+    {% if data.age < 20 %}
+{#        {{ data.name }}#}
+    {% elif data.age == 20 %}
+        {{ data | length() }}
+        {{ data.number  | default(data.number) | default('SummerY')}}
+{#        {% set messages = get_flashed_messages() %}#}
+{#        {{ messages }}#}
+        {% with messages = get_flashed_messages() %}
+        {{ messages }}
+        {% endwith %}
+    {% else %}
+{#        {{ data.age }}#}
+    {% endif %}
+{# 若使用with则不能在这里进行调用messages #}
+{#    {{ messages }}#}
+{% endblock %}
+
+{# 在另一个block中调用messages 无效 #}
+{#{% block foot %}#}
+{#    {{ messages }}#}
+{#{% endblock %}#}
