@@ -5,7 +5,7 @@
 """
 # SQLALCHEMY_TRACK_MODIFICATIONS修改SQLALCHEMY的源码
 # cymysql 数据库驱动
-DEBUG = True
+DEBUG = False
 SQLALCHEMY_DATABASE_URI = 'mysql+cymysql://root:123456@localhost:3306/fisher'
 
 SQLALCHEMY_TRACK_MODIFICATIONS = False
