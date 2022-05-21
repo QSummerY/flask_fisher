@@ -3,9 +3,9 @@ from app.models.book import db
 from flask_login import LoginManager
 from flask_mail import Mail
 
-# login 插件的初始化
+# login init
 login_manager = LoginManager()
-# mail 插件的实例化
+# mail init
 mail = Mail()
 
 
